@@ -26,7 +26,7 @@ class usertokenvalidation
         if ($token) {
             return $next($request);
         } else {
-            return response()->json(['error' => 'token错误，请重新登录']);
+            return STJsonResultError(['info' => 'token错误，请重新登录']);
         }
     }
 }

@@ -13,7 +13,7 @@ class StoreController extends Controller
     {
         $uid = $request->cookie('token');
         $user = DB::table('st_store')->where('id', '=', $uid)->first();
-        return response()->json(['data' => $user]);
+        return STJsonResultData($user);
     }
 
     public function UpdateInfo(Request $request)
@@ -22,7 +22,7 @@ class StoreController extends Controller
         $uid = $request->cookie('token');
         DB::table('st_store')->where('id', $uid)->update(
             $att);
-        return response()->json(['result' => '1']);
+        return STJsonResultData(['info'=>'成功']);
     }
 
     public function getUpdateObject($tableName, $data)
