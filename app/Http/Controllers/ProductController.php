@@ -95,9 +95,13 @@ class ProductController extends Controller
         $allData = $request->all();
         $product_id = $allData['product_id'];
         $info = DB::table('st_product_info')->where('product_id', $product_id)->first();
-        $imgs = DB::table('st_product_img')->where('product_id', $info->product_id)->get();
-        $info->imgs = self::ToExtractTheImage($imgs);
-        return STJsonResultData($info);
+        if ($info) {
+            $imgs = DB::table('st_product_img')->where('product_id', $info->product_id)->get();
+            $info->imgs = self::ToExtractTheImage($imgs);
+            return STJsonResultData($info);
+        } else {
+            return STJsonResultError(['产品不存在']);
+        }
     }
 
     public function DeleteProductById(Request $request)
