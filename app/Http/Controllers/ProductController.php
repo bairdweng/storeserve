@@ -29,15 +29,15 @@ class ProductController extends Controller
             $product_name = $allData['product_name'];
             $product_price = $allData['product_price'];
             $product_details = $allData['product_details'];
-            $creattime = date("Y-m-d H:i:s");
+            $createtime = date("Y-m-d H:i:s");
             DB::table('st_product_info')->insert(
                 [
                     'store_id' => $store_id,
                     'product_name' => $product_name,
                     'product_price' => $product_price,
                     'product_details' => $product_details,
-                    'creattime' => $creattime,
-                    'lasttime' => $creattime
+                    'createtime' => $createtime,
+                    'lasttime' => $createtime
                 ]
             );
             return STJsonResultData(['info' => '成功']);
@@ -56,7 +56,7 @@ class ProductController extends Controller
             return STJsonResultError('文件上传失败');
         }
         $st_product_info = DB::table('st_product_info')->where('product_id', $product_id)->first();
-        $creattime = date("Y-m-d H:i:s");
+        $createtime = date("Y-m-d H:i:s");
         if (!$st_product_info) {
             return STJsonResultError('product_id不存在');
 
@@ -68,7 +68,7 @@ class ProductController extends Controller
                 [
                     'product_id' => $product_id,
                     'img_name' => $newFileName,
-                    'creattime' => $creattime
+                    'createtime' => $createtime
                 ]
             );
             return STJsonResultData(['info' => '上传成功']);
@@ -154,7 +154,7 @@ class ProductController extends Controller
         $att = array();
         foreach ($columns as $key) {
             if (array_key_exists($key, $data)) {
-                if ($key != 'creattime') {
+                if ($key != 'createtime') {
                     $att[$key] = $data[$key];
                 }
             }

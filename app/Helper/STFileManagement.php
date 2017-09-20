@@ -12,3 +12,11 @@ function STDeleteImgByFileName($fileName)
         unlink($path);
     }
 }
+
+function STDeleteStoreIconByFileName($fileName)
+{
+    $path = StoreIconRelativePath() . $fileName;
+    if (file_exists($path)) {
+        unlink($path);
+    }
+}

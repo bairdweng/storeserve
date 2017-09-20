@@ -103,4 +103,8 @@ class UserController extends Controller
         $user = DB::table('st_user')->where('id', '=', $value)->first();
         return STJsonResultData($user);
     }
+
+
+
+
 }
